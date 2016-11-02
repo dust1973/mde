@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions targetNamespace="http://apache2/Fingerscanner/" xmlns:s="http://www.w3.org/2001/XMLSchema"
+xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+xmlns:tns="http://apache2/Fingerscanner/"
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+	<wsdl:types>
+		<s:schema elementFormDefault="qualified" targetNamespace="http://apache2/Fingerscanner/">
+			<s:element name="GetFilialen">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="uid" default="99" type="s:int" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetFilialenResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="1" maxOccurs="1" name="Parameters" type="tns:GetFilialenResponseType"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="GetFilialenResponseType">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="uid" type="s:int"/>
+					<s:element minOccurs="0" maxOccurs="1" name="Filialnummer" type="s:string"/>
+					<s:element minOccurs="0" maxOccurs="1" name="Filialbezeichnung" type="s:string"/>
+					<s:element minOccurs="0" maxOccurs="1" name="Fehler" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<s:element name="GetReduNachEan">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"  name="FilialId" default="3" type="s:int"/>
+						<s:element minOccurs="0" maxOccurs="1"  name="EAN" default="4053059767994" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetReduNachEanResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="Filialbezeichnung" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Filialnummer" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Artikelnummer" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="ReduNummer" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Warengruppe" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="KredArtNr" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="ModellNr" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Artikelbezeichnung" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="KredFarbe" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="UmsatzStueck" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="LBStueck" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="UrsprVK" type="s:float"/>
+						<s:element minOccurs="0" maxOccurs="1" name="AktVK" type="s:float"/>
+						<s:element minOccurs="0" maxOccurs="1" name="NeuVK" type="s:float"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Strichcode" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Farbe" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Lieferant" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Mitarbeiter" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Abschriftenart" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Bemerkung" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Kategorie" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Flaechengruppe" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="GueltigAb" type="s:date"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Fehler" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetReduNachReduNummer">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="1" maxOccurs="1"  name="FilialId" default="3" type="s:int"/>
+						<s:element minOccurs="1" maxOccurs="1"  name="ReduNummer" default="RED00033854" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetReduNachReduNummerResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="Filialbezeichnung" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Filialnummer" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Artikelnummer" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="ReduNummer" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Warengruppe" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="KredArtNr" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="ModellNr" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Artikelbezeichnung" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="KredFarbe" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="UmsatzStueck" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="LBStueck" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="UrsprVK" type="s:float"/>
+						<s:element minOccurs="0" maxOccurs="1" name="AktVK" type="s:float"/>
+						<s:element minOccurs="0" maxOccurs="1" name="NeuVK" type="s:float"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Strichcode" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Farbe" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Lieferant" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Mitarbeiter" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Abschriftenart" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Bemerkung" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Kategorie" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Flaechengruppe" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="GueltigAb" type="s:date"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Fehler" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetRetoureNachEan">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"  name="FilialId" default="3" type="s:int"/>
+						<s:element minOccurs="0" maxOccurs="1"  name="EAN" default="4053059767994" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetRetoureNachEanResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="Filialbezeichnung" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Filialnummer" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Artikelnummer" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Kreditorenartikelnummer" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Thema" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Saison" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Marke" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Modellnummer" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Artikelbezeichnung" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Warengruppe" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="FarbeKreditor" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="FarbeWoehrl" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Groesse" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Menge" type="s:int"/>
+						<s:element minOccurs="0" maxOccurs="1" name="AktVK" type="s:float"/>
+						<s:element minOccurs="0" maxOccurs="1" name="UrsprungVK" type="s:float"/>
+						<s:element minOccurs="0" maxOccurs="1" name="AnLagerort" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Kreditor" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Ersteller" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="HaengeLiegeware" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="BemFuerFilialen" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Kategorie" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Flaechengruppe" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="GueltigAb" type="s:date"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Fehler" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetUmlagerungNachEan">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"  name="FilialId" default="33" type="s:int"/>
+						<s:element minOccurs="0" maxOccurs="1"  name="EAN" default="2000002731788" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetUmlagerungNachEanResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="Filialbezeichnung" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Filialnummer" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Artikelnummer" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Thema" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Saison" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Kreditorenartikelnummer" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Marke" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Modell" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Warengruppe" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="KredFarbe" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="WoehrlFarbe" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="UmsatzStueck" type="s:int"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Groesse" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Menge" type="s:float"/>
+						<s:element minOccurs="0" maxOccurs="1" name="UrsprVK" type="s:float"/>
+						<s:element minOccurs="0" maxOccurs="1" name="AktVK" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="AnLagerort" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Umlagerungsnummer" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Ersteller" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Umlagerungsart" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Bemerkung" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Kategorie" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Flaechengruppe" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="GueltigAb" type="s:date"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Fehler" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="string" nillable="true" type="s:anyType" />
+		</s:schema>
+	</wsdl:types>
+	<wsdl:message name="GetFilialenSoapIn">
+		<wsdl:part name="Parameters" element="tns:GetFilialen" />
+	</wsdl:message>
+	<wsdl:message name="GetFilialenSoapOut">
+		<wsdl:part name="Parameters" element="tns:GetFilialenResponse" />
+	</wsdl:message>
+	<wsdl:message name="GetReduNachEanSoapIn">
+		<wsdl:part name="Parameters" element="tns:GetReduNachEan" />
+	</wsdl:message>
+	<wsdl:message name="GetReduNachEanSoapOut">
+		<wsdl:part name="Redu" element="tns:GetReduNachEanResponse" />
+	</wsdl:message>
+	<wsdl:message name="GetReduNachReduNummerSoapIn">
+		<wsdl:part name="Parameters" element="tns:GetReduNachReduNummer" />
+	</wsdl:message>
+	<wsdl:message name="GetReduNachReduNummerSoapOut">
+		<wsdl:part name="ReduArtikelnummer" element="tns:GetReduNachReduNummerResponse" />
+	</wsdl:message>
+	<wsdl:message name="GetRetoureNachEanSoapIn">
+		<wsdl:part name="Parameters" element="tns:GetRetoureNachEan" />
+	</wsdl:message>
+	<wsdl:message name="GetRetoureNachEanSoapOut">
+		<wsdl:part name="Retoure" element="tns:GetRetoureNachEanResponse" />
+	</wsdl:message>
+	<wsdl:message name="GetUmlagerungNachEanSoapIn">
+		<wsdl:part name="Parameters" element="tns:GetUmlagerungNachEan" />
+	</wsdl:message>
+	<wsdl:message name="GetUmlagerungNachEanSoapOut">
+		<wsdl:part name="Umlagerung" element="tns:GetUmlagerungNachEanResponse" />
+	</wsdl:message>
+	<wsdl:portType name="FilialenSoap">
+		<wsdl:operation name="GetFilialen">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Filialen</wsdl:documentation>
+			<wsdl:input message="tns:GetFilialenSoapIn" />
+			<wsdl:output message="tns:GetFilialenSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="GetReduNachEan">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GetReduNachEan</wsdl:documentation>
+			<wsdl:input message="tns:GetReduNachEanSoapIn" />
+			<wsdl:output message="tns:GetReduNachEanSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="GetReduNachReduNummer">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GetReduNachReduNummer</wsdl:documentation>
+			<wsdl:input message="tns:GetReduNachReduNummerSoapIn" />
+			<wsdl:output message="tns:GetReduNachReduNummerSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="GetRetoureNachEan">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GetRetoureNachEan</wsdl:documentation>
+			<wsdl:input message="tns:GetRetoureNachEanSoapIn" />
+			<wsdl:output message="tns:GetRetoureNachEanSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="GetUmlagerungNachEan">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GetUmlagerungNachEan</wsdl:documentation>
+			<wsdl:input message="tns:GetUmlagerungNachEanSoapIn" />
+			<wsdl:output message="tns:GetUmlagerungNachEanSoapOut" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="FilialenSoap" type="tns:FilialenSoap">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetFilialen">
+			<soap:operation soapAction="http://apache2/Fingerscanner/GetFilialen" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetReduNachEan">
+			<soap:operation soapAction="http://apache2/Fingerscanner/GetReduNachEan" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="GetReduNachReduNummer">
+			<soap:operation soapAction="http://apache2/Fingerscanner/GetReduNachReduNummer" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>		
+		
+		<wsdl:operation name="GetRetoureNachEan">
+			<soap:operation soapAction="http://apache2/Fingerscanner/GetRetoureNachEan" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetUmlagerungNachEan">
+			<soap:operation soapAction="http://apache2/Fingerscanner/GetUmlagerungNachEan" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="FilialenSoap12" type="tns:FilialenSoap">
+		<soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetFilialen">
+			<soap12:operation soapAction="http://apache2/Fingerscanner/GetFilialen" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetReduNachEan">
+			<soap12:operation soapAction="http://apache2/Fingerscanner/GetReduNachEan" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="GetReduNachReduNummer">
+			<soap12:operation soapAction="http://apache2/Fingerscanner/GetReduNachReduNummer" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>		
+		
+		<wsdl:operation name="GetRetoureNachEan">
+			<soap12:operation soapAction="http://apache2/Fingerscanner/GetRetoureNachEan" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetUmlagerungNachEan">
+			<soap12:operation soapAction="http://apache2/Fingerscanner/GetUmlagerungNachEan" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="Filialen">
+		<wsdl:port name="FilialenSoap" binding="tns:FilialenSoap">
+			<soap:address location="https://redurunner.zentrale-woehrl.de/dev/server.php" />
+		</wsdl:port>
+		<wsdl:port name="FilialenSoap12" binding="tns:FilialenSoap12">
+			<soap12:address location="https://redurunner.zentrale-woehrl.de/dev/server.php" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

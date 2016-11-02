@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Zugriff verweigert - Bitte User und Passwort eingeben"
+AuthUserFile /var/www/html/.htpasswd
+Require valid-user

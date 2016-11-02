@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+             xmlns:wsp="http://www.w3.org/ns/ws-policy"
+             xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+             xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="https://redurunner.zentrale-woehrl.de/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             targetNamespace="https://redurunner.zentrale-woehrl.de/"
+             name="Umlagerung">
+    <types>
+        <xs:schema xmlns:tns="https://redurunner.zentrale-woehrl.de/"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0"
+                   targetNamespace="https://redurunner.zentrale-woehrl.de/">
+
+        <xs:element name="getKommissionierListe" type="tns:getKommissionierListe"/>
+        <xs:element name="getKommissionierListeResponse" type="tns:getKommissionierListeResponse"/>
+
+        <xs:element name="pingPong" type="tns:pingPong"/>
+
+        <xs:element name="pingPongResponse" type="tns:pingPongResponse"/>
+
+        <xs:complexType name="pingPong">
+            <xs:sequence/>
+        </xs:complexType>
+
+        <xs:complexType name="pingPongResponse">
+            <xs:sequence>
+                <xs:element name="return" type="xs:string" minOccurs="0"></xs:element>
+            </xs:sequence>
+        </xs:complexType>
+
+        <xs:complexType name="getKommissionierListe" >
+            <xs:sequence>
+                <xs:element name="umlagerungsNummer" type="xs:string" default="000000073892" />
+            </xs:sequence>
+        </xs:complexType>
+
+        <xs:complexType name="getKommissionierListeResponse">
+            <xs:sequence>
+                <xs:element name="return" maxOccurs="unbounded" minOccurs="0" >
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Count" type="xs:int" minOccurs="0"/>
+                            <xs:element name="Umlagerungsnummer" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Bemerkung" type="xs:string" minOccurs="0"/>
+                            <xs:element name="GueltigAb" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Lieferdatum" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Herkunftsart" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Herkunftsbeleg" type="xs:string" minOccurs="0"/>
+                            <xs:element name="HaengeLiegeware" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Umlagerungsart" type="xs:string" minOccurs="0"/>
+                            <xs:element name="MengeInUmlagerungsAuftrag" type="xs:string" minOccurs="0"/>
+                            <xs:element name="MengeAktuellerBestand" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Ersteller" type="xs:string" minOccurs="0"/>
+                            <xs:element name="VonFilialbezeichnung" type="xs:string" minOccurs="0"/>
+                            <xs:element name="VonFilialnummer" type="xs:string" minOccurs="0"></xs:element>
+                            <xs:element name="AnFilialbezeichnung" type="xs:string" minOccurs="0"/>
+                            <xs:element name="AnFilialnummer" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Lieferant" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Kategorie" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Flaechengruppe" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Artikelnummer" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Warengruppe" type="xs:string" minOccurs="0"/>
+                            <xs:element name="KredArtNr" type="xs:string" minOccurs="0"/>
+                            <xs:element name="ModellNr" type="xs:string" minOccurs="0"/>
+                            <xs:element name="ArtikelBezeichnung" type="xs:string" minOccurs="0"/>
+                            <xs:element name="KredFarbe" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Strichcode" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Farbe" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Groesse" type="xs:string" minOccurs="0"></xs:element>
+                            <xs:element name="Fehler" type="xs:string" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:schema>
+    </types>
+    <message name="pingPong">
+        <part name="parameters" element="tns:pingPong"/>
+    </message>
+    <message name="pingPongResponse">
+        <part name="parameters" element="tns:pingPongResponse"/>
+    </message>
+    <message name="getKommissionierListe">
+        <part name="parameters" element="tns:getKommissionierListe"/>
+    </message>
+    <message name="getKommissionierListeResponse">
+        <part name="parameters" element="tns:getKommissionierListeResponse"/>
+    </message>
+    <portType name="Umlagerung">
+        <operation name="pingPong">
+            <input wsam:Action="https://redurunner.zentrale-woehrl.de/Umlagerung/pingPongRequest" message="tns:pingPong"/>
+            <output wsam:Action="https://redurunner.zentrale-woehrl.de/Umlagerung/pingPongResponse" message="tns:pingPongResponse"/>
+        </operation>
+        <operation name="getKommissionierListe">
+            <input wsam:Action="https://redurunner.zentrale-woehrl.de/Umlagerung/getKommissionierListeRequest" message="tns:getKommissionierListe"/>
+            <output wsam:Action="https://redurunner.zentrale-woehrl.de/Umlagerung/getKommissionierListeResponse" message="tns:getKommissionierListeResponse"/>
+        </operation>
+    </portType>
+    <binding name="UmlagerungImplPortBinding" type="tns:Umlagerung">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="pingPong">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getKommissionierListe">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="Umlagerung">
+        <port name="UmlagerungImplPort" binding="tns:UmlagerungImplPortBinding">
+            <soap:address location="https://93.122.81.216/umlagerung/server.php"/>
+        </port>
+    </service>
+</definitions>

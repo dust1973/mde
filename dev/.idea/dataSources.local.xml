@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="SQL Server - ReduRunner@192.168.3.48" uuid="24c71e12-382f-465e-9c1b-ff18ef932d70">
+      <secret-storage>master_key</secret-storage>
+      <user-name>WebServerReduzierung</user-name>
+      <schema-pattern>Reduzierung.*</schema-pattern>
+      <default-schemas>Reduzierung.*</default-schemas>
+    </data-source>
+    <data-source name="MySQL - fingerscanner@10.2.10.93" uuid="21cbd8f1-d19a-46e9-93cf-da54f769affd">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>fingerscanner.*</schema-pattern>
+      <default-schemas>fingerscanner.*</default-schemas>
+    </data-source>
+  </component>
+</project>
+

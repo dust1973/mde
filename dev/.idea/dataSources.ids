@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="SQL Server - ReduRunner@192.168.3.48" uuid="24c71e12-382f-465e-9c1b-ff18ef932d70">
+    <database-info product="Microsoft SQL Server" version="10.00.5861" jdbc-version="4.0" driver-name="Microsoft JDBC Driver 4.0 for SQL Server" driver-version="4.0.2206.100">
+      <extra-name-characters>$#@</extra-name-characters>
+      <identifier-quote-string>&quot;</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
+  </data-source>
+  <data-source name="MySQL - fingerscanner@10.2.10.93" uuid="21cbd8f1-d19a-46e9-93cf-da54f769affd">
+    <database-info product="MySQL" version="5.5.38-0ubuntu0.14.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="fingerscanner"/>
+    <table name="log_redurunner" schema="" catalog="fingerscanner" type="TABLE">
+      <column name="pin" sqlType="VARCHAR" precision="8" scale="0" nullable="false" jdbcType="12"/>
+      <column name="zeitstempel" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <column name="log" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+    </table>
+    <table name="settings_redurunner" schema="" catalog="fingerscanner" type="TABLE">
+      <column name="imei" sqlType="VARCHAR" precision="8" scale="0" nullable="false" jdbcType="12"/>
+      <column name="debug" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="debugLevel" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="url_startpage" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="url_helppage" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="zeitstempel" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <column name="scanner" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" def="J1NBVE8gTU9CSUxFIFBSSU5URVIn"/>
+      <column name="drucker" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" def="J0xYRSBTY2FubmVyJw=="/>
+      <primary-key name="PRIMARY" columns="imei"/>
+      <index name="imei" unique="true" columns="imei"/>
+    </table>
+  </data-source>
+</component>

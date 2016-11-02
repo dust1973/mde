@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions targetNamespace="http://apache2/Fingerscanner/" xmlns:s="http://www.w3.org/2001/XMLSchema"
+xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+xmlns:tns="http://apache2/Fingerscanner/"
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+	<wsdl:types>
+		<s:schema elementFormDefault="qualified" targetNamespace="http://apache2/Fingerscanner/">
+            <s:element name="Ping">
+                <s:complexType>
+                    <s:sequence></s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="PingResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="pong" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+			<s:element name="GetSettings">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="pin"  type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetSettingsResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="1" maxOccurs="1" name="Parameters" type="tns:SettingsResponseType"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+            <s:element name="SetSettings">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="Parameters" type="tns:SetSettingsResponseType"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SetSettingsResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="Fehler" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="Success" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+			<s:element name="DebugRecord">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="1" maxOccurs="1" name="pin"  type="s:string" />
+						<s:element minOccurs="1" maxOccurs="10" name="log"  type="s:anyType" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="DebugRecordResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="1" maxOccurs="1" name="Fehler" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Success" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="SettingsResponseType">
+				<s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="pin"  type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="debug" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="debugLevel" type="s:int"/>
+					<s:element minOccurs="0" maxOccurs="1" name="zeitstempel" type="s:string"/>
+					<s:element minOccurs="0" maxOccurs="1" name="url_startpage" type="s:string"/>
+					<s:element minOccurs="0" maxOccurs="1" name="url_helppage" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="scanner" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="drucker" type="s:string"/>
+					<s:element minOccurs="0" maxOccurs="1" name="type" type="s:string"/>
+					<s:element minOccurs="0" maxOccurs="1" name="Fehler" type="s:string"/>
+					<s:element minOccurs="0" maxOccurs="1" name="Success" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+            <s:complexType name="SetSettingsResponseType">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="pin"  type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="debug" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="debugLevel" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="scanner" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="drucker" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="url_startpage" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="url_helppage" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+			<s:element name="GetFilialen">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="uid" default="99" type="s:int" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetFilialenResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="1" maxOccurs="1" name="Parameters" type="tns:GetFilialenResponseType"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="GetFilialenResponseType">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="uid" type="s:int"/>
+					<s:element minOccurs="0" maxOccurs="1" name="Filialnummer" type="s:string"/>
+					<s:element minOccurs="0" maxOccurs="1" name="Filialbezeichnung" type="s:string"/>
+					<s:element minOccurs="0" maxOccurs="1" name="Fehler" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<s:element name="GetReduNachReduNummer">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="1" maxOccurs="1"  name="FilialId" default="3" type="s:int"/>
+						<s:element minOccurs="1" maxOccurs="1"  name="ReduNummer" default="RED00033854" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetReduNachReduNummerResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="Filialbezeichnung" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Filialnummer" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Artikelnummer" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="ReduNummer" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Warengruppe" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="KredArtNr" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="ModellNr" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Artikelbezeichnung" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="KredFarbe" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="UmsatzStueck" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="LBStueck" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="UrsprVK" type="s:float"/>
+						<s:element minOccurs="0" maxOccurs="1" name="AktVK" type="s:float"/>
+						<s:element minOccurs="0" maxOccurs="1" name="NeuVK" type="s:float"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Strichcode" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Farbe" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Lieferant" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Mitarbeiter" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Abschriftenart" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Bemerkung" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Kategorie" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Flaechengruppe" type="s:string"/>
+						<s:element minOccurs="0" maxOccurs="1" name="GueltigAb" type="s:date"/>
+						<s:element minOccurs="0" maxOccurs="1" name="Fehler" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="string" nillable="true" type="s:anyType" />
+		</s:schema>
+	</wsdl:types>
+    <wsdl:message name="PingPongSoapIn">
+        <wsdl:part name="Parameters" element="tns:Ping" />
+    </wsdl:message>
+    <wsdl:message name="PingPongSoapOut">
+        <wsdl:part name="Parameters" element="tns:PingResponse" />
+    </wsdl:message>
+	<wsdl:message name="DebugRecordSoapIn">
+		<wsdl:part name="Parameters" element="tns:DebugRecord" />
+	</wsdl:message>
+	<wsdl:message name="DebugRecordSoapOut">
+		<wsdl:part name="Parameters" element="tns:DebugRecordResponse" />
+	</wsdl:message>
+	<wsdl:message name="GetSettingsSoapIn">
+		<wsdl:part name="Parameters" element="tns:GetSettings" />
+	</wsdl:message>
+	<wsdl:message name="GetSettingsSoapOut">
+		<wsdl:part name="Parameters" element="tns:GetSettingsResponse" />
+	</wsdl:message>
+    <wsdl:message name="SetSettingsSoapIn">
+        <wsdl:part name="Parameters" element="tns:SetSettings" />
+    </wsdl:message>
+    <wsdl:message name="SetSettingsSoapOut">
+        <wsdl:part name="Parameters" element="tns:SetSettingsResponse" />
+    </wsdl:message>
+	<wsdl:message name="GetFilialenSoapIn">
+		<wsdl:part name="Parameters" element="tns:GetFilialen" />
+	</wsdl:message>
+	<wsdl:message name="GetFilialenSoapOut">
+		<wsdl:part name="Parameters" element="tns:GetFilialenResponse" />
+	</wsdl:message>
+	<wsdl:message name="GetReduNachReduNummerSoapIn">
+		<wsdl:part name="Parameters" element="tns:GetReduNachReduNummer" />
+	</wsdl:message>
+	<wsdl:message name="GetReduNachReduNummerSoapOut">
+		<wsdl:part name="ReduArtikelnummer" element="tns:GetReduNachReduNummerResponse" />
+	</wsdl:message>
+
+
+	<wsdl:portType name="FilialenSoap">
+        <wsdl:operation name="PingPong">
+            <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">PingPong</wsdl:documentation>
+            <wsdl:input message="tns:PingPongSoapIn" />
+            <wsdl:output message="tns:PingPongSoapOut" />
+        </wsdl:operation>
+		<wsdl:operation name="DebugRecord">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">DebugRecord</wsdl:documentation>
+			<wsdl:input message="tns:DebugRecordSoapIn" />
+			<wsdl:output message="tns:DebugRecordSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="GetSettings">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GetSettings</wsdl:documentation>
+			<wsdl:input message="tns:GetSettingsSoapIn" />
+			<wsdl:output message="tns:GetSettingsSoapOut" />
+		</wsdl:operation>
+        <wsdl:operation name="SetSettings">
+            <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">SetSettings</wsdl:documentation>
+            <wsdl:input message="tns:SetSettingsSoapIn" />
+            <wsdl:output message="tns:SetSettingsSoapOut" />
+        </wsdl:operation>
+		<wsdl:operation name="GetFilialen">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Filialen</wsdl:documentation>
+			<wsdl:input message="tns:GetFilialenSoapIn" />
+			<wsdl:output message="tns:GetFilialenSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="GetReduNachReduNummer">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GetReduNachReduNummer</wsdl:documentation>
+			<wsdl:input message="tns:GetReduNachReduNummerSoapIn" />
+			<wsdl:output message="tns:GetReduNachReduNummerSoapOut" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="FilialenSoap" type="tns:FilialenSoap">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+
+        <wsdl:operation name="PingPong">
+            <soap:operation soapAction="http://apache2/Fingerscanner/PingPong" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+		<wsdl:operation name="DebugRecord">
+			<soap:operation soapAction="http://apache2/Fingerscanner/DebugRecord" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSettings">
+			<soap:operation soapAction="http://apache2/Fingerscanner/GetSettings" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+        <wsdl:operation name="SetSettings">
+            <soap:operation soapAction="http://apache2/Fingerscanner/SetSettings" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+		<wsdl:operation name="GetFilialen">
+			<soap:operation soapAction="http://apache2/Fingerscanner/GetFilialen" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetReduNachReduNummer">
+			<soap:operation soapAction="http://apache2/Fingerscanner/GetReduNachReduNummer" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+	</wsdl:binding>
+	<wsdl:binding name="FilialenSoap12" type="tns:FilialenSoap">
+		<soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="PingPong">
+            <soap12:operation soapAction="http://apache2/Fingerscanner/PingPong" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+		<wsdl:operation name="DebugRecord">
+			<soap12:operation soapAction="http://apache2/Fingerscanner/DebugRecord" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSettings">
+			<soap12:operation soapAction="http://apache2/Fingerscanner/GetSettings" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+        <wsdl:operation name="SetSettings">
+            <soap12:operation soapAction="http://apache2/Fingerscanner/SetSettings" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+		<wsdl:operation name="GetFilialen">
+			<soap12:operation soapAction="http://apache2/Fingerscanner/GetFilialen" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetReduNachReduNummer">
+			<soap12:operation soapAction="http://apache2/Fingerscanner/GetReduNachReduNummer" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>		
+		
+	</wsdl:binding>
+	<wsdl:service name="Filialen">
+		<wsdl:port name="FilialenSoap" binding="tns:FilialenSoap">
+			<soap:address location="https://redurunner.zentrale-woehrl.de/dev/server.php" />
+		</wsdl:port>
+		<wsdl:port name="FilialenSoap12" binding="tns:FilialenSoap12">
+			<soap12:address location="https://redurunner.zentrale-woehrl.de/dev/server.php" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
